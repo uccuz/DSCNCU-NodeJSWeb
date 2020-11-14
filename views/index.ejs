@@ -1,0 +1,30 @@
+<%- include('partials/header'); -%>
+
+<h2 style="margin-bottom: 50px;" data-aos="fade-up-right">課程介紹 
+    <a class="btn btn-outline-primary" style="margin-left: 12px;margin-bottom: 4px;" href="/addCourse" role="button"><i class="fas fa-plus"></i> 新增</a>
+</h2>
+    <% if (courses[0]) { %>
+    <div class="row">
+    <% courses.forEach(function(course){ %>
+        <div class="col-lg-4 mb-4">
+            <div class="card" data-aos="flip-left">
+                <img class="card-img-top" src="<%= course.img %>" height="200px" alt=".png">
+                <div class="card-body">
+                    <h5 class="card-title"><%= course.name %></h5>
+                    <p class="card-text"><%= course.content %></p>
+
+                    <form class="d-inline" action="/deleteCourse/<%=course.id%>" method="GET">
+                        <button class="btn btn-outline-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+    </div>
+    <% } else { %>
+    <div style="text-align:center;">
+        <h3>還沒建立任何課程</h3>
+    </div>
+    <% } %>
+
+<%- include('partials/footer'); -%>
